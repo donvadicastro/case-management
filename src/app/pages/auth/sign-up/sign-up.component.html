@@ -1,0 +1,21 @@
+<div class="displayTable container d-flex justify-content-center">
+  <div class="displayTableCell">
+
+    <div class="authBlock">
+      <h3>Sign Up</h3>
+
+      <!-- Continue with Google -->
+      <div class="form-group mb-3">
+        <button type="button" class="btn btn-primary googleBtn" (click)="authService.GoogleAuth()">
+          <i class="fab fa-google-plus-g"></i>
+          Continue with Google
+        </button>
+      </div>
+    </div>
+
+    <div class="redirectToLogin">
+      <span>Already have an account? <a class="redirect" routerLink="/sign-in">Log In</a></span>
+    </div>
+  </div>
+
+</div>

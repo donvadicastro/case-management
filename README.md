@@ -1,2 +1,1 @@
-# case-management
-Use-case management system
+# Use-case management system
