@@ -1,0 +1,20 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" formControlName="title">
+  </div>
+  <div class="mb-3">
+    <label for="project" class="form-label">Project</label>
+    <select id="project" class="form-control" formControlName="project" [ngModel]="editForm.get('project')?.value">
+      <option *ngFor="let n of projects" [ngValue]="n" [selected]="n.id === editForm.get('project')?.value?.id">
+        {{ n.name }}
+      </option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control" id="description" formControlName="description">
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+  <a class="btn" routerLink="..">Back</a>
+</form>
