@@ -26,7 +26,7 @@ import {FunctionEditComponent} from "./pages/management/functions/edit/function-
     { path: 'sign-up', component: SignUpComponent },
 
     { path: '', canActivate: [AuthGuard], children: [
-        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+        { path: '', redirectTo: 'management/cases', pathMatch: 'full' },
         { path: 'profile', component: ProfileComponent },
         { path: 'dashboard', component: DashboardComponent },
 
