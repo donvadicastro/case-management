@@ -1,13 +1,11 @@
 export const environment = {
   firebase: {
-    projectId: 'test-37ceb',
-    appId: '1:380469542332:web:e35d90f14c366821063fb9',
-    databaseURL: 'https://test-37ceb-default-rtdb.firebaseio.com',
-    storageBucket: 'test-37ceb.appspot.com',
-    locationId: 'europe-west',
-    apiKey: 'AIzaSyD4Lu_ZzGHIcYn5x4pMiPyoviA0W24AL24',
-    authDomain: 'test-37ceb.firebaseapp.com',
-    messagingSenderId: '380469542332',
+    apiKey: "AIzaSyBW2VlfzUrxKhMeyHU3H0MZJ1SGijs6pq4",
+    authDomain: "casemanagement-d7eb6.firebaseapp.com",
+    projectId: "casemanagement-d7eb6",
+    storageBucket: "casemanagement-d7eb6.appspot.com",
+    messagingSenderId: "432654386248",
+    appId: "1:432654386248:web:40c329bd54c52ca000c47d"
   },
   production: true
 };

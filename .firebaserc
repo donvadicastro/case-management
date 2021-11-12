@@ -3,12 +3,12 @@
     "casemanagement-d7eb6": {
       "hosting": {
         "angular-firebase": [
-          "casemanagement-d7eb6""
+          "casemanagement-d7eb6"
         ]
       }
     }
   },
   "projects": {
-    "default": "casemanagement-d7eb6""
+    "default": "casemanagement-d7eb6"
   }
 }
