@@ -26,9 +26,13 @@ export class AuthService {
     this.afAuth.authState.subscribe((user: firebase.User | null) => {
       if (user) {
         this.currentUser = user;
+
+        sessionStorage.setItem('user', JSON.stringify(user));
         this.authStateChanged$.next(user);
       } else {
         this.currentUser = null;
+
+        sessionStorage.removeItem('user');
         this.authStateChanged$.next(null);
       }
     })
