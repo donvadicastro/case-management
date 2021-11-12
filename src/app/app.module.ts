@@ -18,6 +18,16 @@ import {ProjectListComponent} from "./pages/management/projects/list/project-lis
 import {CaseListComponent} from "./pages/management/cases/list/case-list.component";
 import {CaseEditComponent} from "./pages/management/cases/edit/case-edit.component";
 import {AutoCompleteModule} from "primeng/autocomplete";
+import {ActionListComponent} from "./pages/management/actions/list/action-list.component";
+import {ActionEditComponent} from "./pages/management/actions/edit/action-edit.component";
+import {ActorListComponent} from "./pages/management/actors/list/actor-list.component";
+import {ActorEditComponent} from "./pages/management/actors/edit/actor-edit.component";
+import {EntityListComponent} from "./pages/management/entities/list/entity-list.component";
+import {EntityEditComponent} from "./pages/management/entities/edit/entity-edit.component";
+import {QueryListComponent} from "./pages/management/queries/list/query-list.component";
+import {QueryEditComponent} from "./pages/management/queries/edit/query-edit.component";
+import {FunctionListComponent} from "./pages/management/functions/list/function-list.component";
+import {FunctionEditComponent} from "./pages/management/functions/edit/function-edit.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +39,17 @@ import {AutoCompleteModule} from "primeng/autocomplete";
     ProjectEditComponent,
     ProfileComponent,
     CaseListComponent,
-    CaseEditComponent
+    CaseEditComponent,
+    ActorListComponent,
+    ActorEditComponent,
+    ActionListComponent,
+    ActionEditComponent,
+    EntityListComponent,
+    EntityEditComponent,
+    QueryListComponent,
+    QueryEditComponent,
+    FunctionListComponent,
+    FunctionEditComponent,
   ],
   imports: [
     BrowserModule,
