@@ -7,7 +7,6 @@ import {environment} from '../environments/environment';
 import {getDatabase, provideDatabase} from '@angular/fire/database';
 import {SignInComponent} from './pages/auth/sign-in/sign-in.component';
 import {SignUpComponent} from './pages/auth/sign-up/sign-up.component';
-import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
@@ -28,6 +27,8 @@ import {QueryListComponent} from "./pages/management/queries/list/query-list.com
 import {QueryEditComponent} from "./pages/management/queries/edit/query-edit.component";
 import {FunctionListComponent} from "./pages/management/functions/list/function-list.component";
 import {FunctionEditComponent} from "./pages/management/functions/edit/function-edit.component";
+import {DashboardComponent} from "./pages/dashboard/dashboard.component";
+import {FilterByProjectPipe} from "./pipes/filterByProduct/filter-by-product.pipe";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {FunctionEditComponent} from "./pages/management/functions/edit/function-
     QueryEditComponent,
     FunctionListComponent,
     FunctionEditComponent,
+    FilterByProjectPipe,
   ],
   imports: [
     BrowserModule,
