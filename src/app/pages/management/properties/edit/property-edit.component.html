@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+  </div>
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="typeString" value="string" formControlName="type">
+      <label class="form-check-label" for="typeString">String</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="typeNumber" value="number" formControlName="type">
+      <label class="form-check-label" for="typeNumber">Number</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="typeCalculated" value="calculated" formControlName="type">
+      <label class="form-check-label" for="typeCalculated">Calculated</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="typeReference" value="reference" formControlName="type">
+      <label class="form-check-label" for="typeReference">Reference</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="type" id="typeKey" value="key" formControlName="type">
+      <label class="form-check-label" for="typeKey">Key</label>
+    </div>
+  </div>
+  <div class="mb-3" *ngIf="editForm.get('type')?.value === 'calculated'">
+    <label for="formula" class="form-label">Formula</label>
+    <input type="text" class="form-control" id="formula" formControlName="formula">
+  </div>
+  <div class="mb-3" *ngIf="editForm.get('type')?.value === 'reference'">
+    <label for="reference" class="form-label">Reference</label>
+    <select id="reference" class="form-control" formControlName="reference" [compareWith]="compareLookupItems">
+      <option *ngFor="let n of entities" [ngValue]="n">
+        {{ n.name }}
+      </option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control" id="description" formControlName="description">
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+  <a class="btn" routerLink="..">Back</a>
+</form>

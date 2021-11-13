@@ -20,6 +20,9 @@ import {FunctionEditComponent} from "./pages/management/functions/edit/function-
 import {CaseListComponent} from "./pages/management/cases/list/case-list.component";
 import {CaseEditComponent} from "./pages/management/cases/edit/case-edit.component";
 import {ProjectViewComponent} from "./pages/management/projects/view/project-view.component";
+import {PropertyListComponent} from "./pages/management/properties/list/property-list.component";
+import {PropertyEditComponent} from "./pages/management/properties/edit/property-edit.component";
+import {EntityViewComponent} from "./pages/management/entities/view/entity-view.component";
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -51,6 +54,12 @@ import {ProjectViewComponent} from "./pages/management/projects/view/project-vie
 
         { path: 'management/entities', component: EntityListComponent },
         { path: 'management/entities/new', component: EntityEditComponent },
+        { path: 'management/entities/view/:id', component: EntityViewComponent, children: [
+            { path: '', redirectTo: 'cases', pathMatch: 'full' },
+            { path: 'properties', component: PropertyListComponent },
+            { path: 'properties/new', component: PropertyEditComponent },
+            { path: 'properties/:id', component: PropertyEditComponent },
+          ] },
         { path: 'management/entities/:id', component: EntityEditComponent },
 
         { path: 'management/queries', component: QueryListComponent },

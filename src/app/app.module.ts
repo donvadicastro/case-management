@@ -29,6 +29,9 @@ import {FunctionEditComponent} from "./pages/management/functions/edit/function-
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {FilterByProjectPipe} from "./pipes/filterByProduct/filter-by-product.pipe";
 import {ProjectViewComponent} from './pages/management/projects/view/project-view.component';
+import {PropertyListComponent} from "./pages/management/properties/list/property-list.component";
+import {PropertyEditComponent} from "./pages/management/properties/edit/property-edit.component";
+import {EntityViewComponent} from "./pages/management/entities/view/entity-view.component";
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import {ProjectViewComponent} from './pages/management/projects/view/project-vie
     FunctionEditComponent,
     FilterByProjectPipe,
     ProjectViewComponent,
+    PropertyListComponent,
+    PropertyEditComponent,
+    EntityViewComponent
   ],
   imports: [
     BrowserModule,

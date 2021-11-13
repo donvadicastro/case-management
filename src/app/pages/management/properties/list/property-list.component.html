@@ -1,10 +1,10 @@
-<button class="btn btn-primary" routerLink="./new">Add Entity</button>
+<button class="btn btn-primary" routerLink="./new">Add Property</button>
 <table class="table">
   <thead>
   <tr>
     <td>Id</td>
     <td>Name</td>
-    <td>Properties</td>
+    <td>Type</td>
     <td>Description</td>
     <td>CreatedBy</td>
     <td>CreatedOn</td>
@@ -14,11 +14,11 @@
   <tr *ngFor="let entity of entities | async">
     <td><a routerLink="{{entity.id}}">{{ entity.id }}</a></td>
     <td>{{ entity.name }}</td>
-    <td><a class="btn btn-sm btn-secondary" routerLink="view/{{entity.id}}/properties">view properties</a></td>
+    <td>{{ entity.type }}</td>
     <td>{{ entity.description }}</td>
     <td>{{ entity.createdBy?.name }}</td>
     <td>{{ entity.createdOn | date }}</td>
-    <td><button class="btn btn-sm btn-danger" (click)="onDelete(entity.id)">delete</button></td>
+    <td><button class="btn btn-sm" (click)="onDelete(entity.id)">delete</button></td>
   </tr>
   </tbody>
 </table>
