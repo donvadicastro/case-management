@@ -12,14 +12,20 @@ import {LookupModel} from "../../../../shared/entities/baseModel";
 })
 export class QueryEditComponent extends AbstractEditComponent<QueryModel> {
   projects: LookupModel[] = [];
+  entities: LookupModel[] = [];
 
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('queries', fb.group({
       id: [''],
       name: ['', Validators.required],
-      description: ['', Validators.required],
+      from: [null, Validators.required],
+      select: ['', Validators.required],
+      where: ['', Validators.required],
+      description: [''],
       createdBy: [null],
       createdOn: [null],
     }), injector);
+
+    this.loadDictionary('entities').subscribe(res => this.entities = res);
   }
 }

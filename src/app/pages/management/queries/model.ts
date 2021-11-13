@@ -1,6 +1,9 @@
-import {BaseModel} from "../../../shared/entities/baseModel";
+import {BaseModel, LookupModel} from "../../../shared/entities/baseModel";
 
 export interface QueryModel extends BaseModel {
   name: string
-  description: string
+  from: LookupModel
+  select: string
+  where: string
+  description?: string
 }

@@ -4,6 +4,22 @@
     <input type="text" class="form-control" id="name" formControlName="name">
   </div>
   <div class="mb-3">
+    <label for="from" class="form-label">From</label>
+    <select id="from" class="form-control" formControlName="from" [compareWith]="compareLookupItems">
+      <option *ngFor="let n of entities" [ngValue]="n">
+        {{ n.name }}
+      </option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="select" class="form-label">Select</label>
+    <input type="text" class="form-control" id="select" formControlName="select">
+  </div>
+  <div class="mb-3">
+    <label for="where" class="form-label">Where</label>
+    <input type="text" class="form-control" id="where" formControlName="where">
+  </div>
+  <div class="mb-3">
     <label for="description" class="form-label">Description</label>
     <input type="text" class="form-control" id="description" formControlName="description">
   </div>
