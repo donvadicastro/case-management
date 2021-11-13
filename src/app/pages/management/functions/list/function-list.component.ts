@@ -1,7 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {AbstractListComponent} from "../../../../shared/pages/list/list.component";
 import {FunctionModel} from "../model";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-list',
@@ -9,5 +8,5 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
   styleUrls: ['./function-list.component.scss']
 })
 export class FunctionListComponent extends AbstractListComponent<FunctionModel> {
-  constructor(store: AngularFirestore) { super('functions', store); }
+  constructor(injector: Injector) { super('functions', injector); }
 }

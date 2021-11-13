@@ -1,7 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {AbstractListComponent} from "../../../../shared/pages/list/list.component";
 import {ProjectModel} from "../model";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'project-list',
@@ -9,5 +8,5 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
   styleUrls: ['./project-list.component.scss']
 })
 export class ProjectListComponent extends AbstractListComponent<ProjectModel>{
-  constructor(store: AngularFirestore) { super('projects', store); }
+  constructor(injector: Injector) { super('projects', injector); }
 }

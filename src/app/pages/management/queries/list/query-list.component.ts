@@ -1,7 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {AbstractListComponent} from "../../../../shared/pages/list/list.component";
 import {QueryModel} from "../model";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-list',
@@ -9,5 +8,5 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
   styleUrls: ['./query-list.component.scss']
 })
 export class QueryListComponent extends AbstractListComponent<QueryModel> {
-  constructor(store: AngularFirestore) { super('queries', store); }
+  constructor(injector: Injector) { super('queries', injector); }
 }
