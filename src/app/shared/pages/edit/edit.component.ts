@@ -42,7 +42,9 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
       store.collection(this.collectionName).doc(id).update(data).then(() =>
         router.navigate([".."], { relativeTo: activatedRoute }));
     } else {
-      store.collection(this.collectionName).add({...data, parentId: parentId, createdOn: new Date().getTime(), createdBy: user}).then(() =>
+      parentId && (data.parentId = parentId);
+
+      store.collection(this.collectionName).add({...data, createdOn: new Date().getTime(), createdBy: user}).then(() =>
         router.navigate([".."], { relativeTo: activatedRoute }));
     }
   }
