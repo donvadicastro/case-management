@@ -3,16 +3,14 @@
   <thead>
   <tr>
     <td>Id</td>
-    <td>Project</td>
     <td>Title</td>
     <td>CreatedBy</td>
     <td>CreatedOn</td>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let entity of entities | async">
+  <tr *ngFor="let entity of entities">
     <td><a routerLink="{{entity.id}}">{{ entity.id }}</a></td>
-    <td>{{ entity.project.name }}</td>
     <td>{{ entity.actor.name }} {{ entity.action.name }} {{ entity.entity?.name }}{{ entity.query?.name }}{{ entity.function?.name }}</td>
     <td>{{ entity.createdBy?.name }}</td>
     <td>{{ entity.createdOn | date }}</td>

@@ -1,13 +1,5 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
   <div class="mb-3">
-    <label for="project" class="form-label">Project</label>
-    <select id="project" class="form-control" formControlName="project" [compareWith]="compareLookupItems">
-      <option *ngFor="let n of projects" [ngValue]="n" [selected]="n.id === editForm.get('project')?.value?.id">
-        {{ n.name }}
-      </option>
-    </select>
-  </div>
-  <div class="mb-3">
     <label for="actor" class="form-label">Actor</label>
     <select id="actor" class="form-control" formControlName="actor" [compareWith]="compareLookupItems">
       <option *ngFor="let n of actors" [ngValue]="n" [selected]="n.id === editForm.get('actor')?.value?.id">

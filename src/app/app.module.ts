@@ -29,6 +29,7 @@ import {FunctionListComponent} from "./pages/management/functions/list/function-
 import {FunctionEditComponent} from "./pages/management/functions/edit/function-edit.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {FilterByProjectPipe} from "./pipes/filterByProduct/filter-by-product.pipe";
+import { ProjectViewComponent } from './pages/management/projects/view/project-view.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {FilterByProjectPipe} from "./pipes/filterByProduct/filter-by-product.pip
     FunctionListComponent,
     FunctionEditComponent,
     FilterByProjectPipe,
+    ProjectViewComponent,
   ],
   imports: [
     BrowserModule,

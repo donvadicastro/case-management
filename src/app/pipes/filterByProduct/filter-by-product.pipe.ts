@@ -6,6 +6,6 @@ import {CaseModel} from "../../pages/management/cases/model";
 })
 export class FilterByProjectPipe implements PipeTransform {
   transform(value: CaseModel[] | null, projectId: string): CaseModel[] {
-    return value?.filter(x => x.project?.id === projectId) || [];
+    return value?.filter(x => x.parentId === projectId) || [];
   }
 }

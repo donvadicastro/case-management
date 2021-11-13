@@ -7,8 +7,6 @@ import {AuthGuard} from "./pages/auth/auth.guard";
 import {ProfileComponent} from "./pages/auth/profile/profile.component";
 import {ProjectListComponent} from "./pages/management/projects/list/project-list.component";
 import {ProjectEditComponent} from "./pages/management/projects/edit/project-edit.component";
-import {CaseListComponent} from "./pages/management/cases/list/case-list.component";
-import {CaseEditComponent} from "./pages/management/cases/edit/case-edit.component";
 import {ActionListComponent} from "./pages/management/actions/list/action-list.component";
 import {ActionEditComponent} from "./pages/management/actions/edit/action-edit.component";
 import {ActorListComponent} from "./pages/management/actors/list/actor-list.component";
@@ -19,6 +17,9 @@ import {QueryListComponent} from "./pages/management/queries/list/query-list.com
 import {QueryEditComponent} from "./pages/management/queries/edit/query-edit.component";
 import {FunctionListComponent} from "./pages/management/functions/list/function-list.component";
 import {FunctionEditComponent} from "./pages/management/functions/edit/function-edit.component";
+import {CaseListComponent} from "./pages/management/cases/list/case-list.component";
+import {CaseEditComponent} from "./pages/management/cases/edit/case-edit.component";
+import {ProjectViewComponent} from "./pages/management/projects/view/project-view.component";
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -32,11 +33,12 @@ import {FunctionEditComponent} from "./pages/management/functions/edit/function-
 
         { path: 'management/projects', component: ProjectListComponent },
         { path: 'management/projects/new', component: ProjectEditComponent },
-        { path: 'management/projects/:id', component: ProjectEditComponent },
-
-        { path: 'management/cases', component: CaseListComponent },
-        { path: 'management/cases/new', component: CaseEditComponent },
-        { path: 'management/cases/:id', component: CaseEditComponent },
+        { path: 'management/projects/:id', component: ProjectViewComponent, children: [
+            { path: '', redirectTo: 'cases', pathMatch: 'full' },
+            { path: 'cases', component: CaseListComponent },
+            { path: 'cases/new', component: CaseEditComponent },
+            { path: 'cases/:id', component: CaseEditComponent },
+          ] },
 
         { path: 'management/actors', component: ActorListComponent },
         { path: 'management/actors/new', component: ActorEditComponent },

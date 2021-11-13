@@ -7,11 +7,15 @@ export abstract class AbstractListComponent<T extends BaseModel> {
   public loading = false;
   public entities: Observable<T[]>;
 
-  protected constructor(private collectionName: string, private store: AngularFirestore) {
+  protected constructor(protected collectionName: string, protected store: AngularFirestore) {
     this.loading = true;
 
-    this.entities = this.store.collection(this.collectionName).valueChanges({idField: 'id'}) as Observable<T[]>
+    this.entities = this.bindCollection().valueChanges({idField: 'id'}) as Observable<T[]>
     this.entities.pipe(tap(() => this.loading = false)).subscribe();
+  }
+
+  protected bindCollection() {
+    return this.store.collection(this.collectionName);
   }
 
   public onDelete(id: string) {
