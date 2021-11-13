@@ -3,7 +3,6 @@ import {AbstractEditComponent} from "../../../../shared/pages/edit/edit.componen
 import {CaseModel} from "../model";
 import {FormBuilder, Validators} from "@angular/forms";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map} from "rxjs/operators";
 import {LookupModel} from "../../../../shared/entities/baseModel";
 
 @Component({
@@ -43,10 +42,5 @@ export class CaseEditComponent extends AbstractEditComponent<CaseModel> {
 
     this.editForm.get('type')?.valueChanges.subscribe(() =>
       this.editForm.patchValue({entity: null, query: null, function: null}));
-  }
-
-  private loadDictionary(dictionaryName: string) {
-    return this.store.collection(dictionaryName).valueChanges({idField: 'id'})
-      .pipe(map(changes => changes.map(((x: any) => ({id: x.id, name: x.name})))));
   }
 }
