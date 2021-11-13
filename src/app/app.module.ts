@@ -16,7 +16,6 @@ import {ProjectEditComponent} from "./pages/management/projects/edit/project-edi
 import {ProjectListComponent} from "./pages/management/projects/list/project-list.component";
 import {CaseListComponent} from "./pages/management/cases/list/case-list.component";
 import {CaseEditComponent} from "./pages/management/cases/edit/case-edit.component";
-import {AutoCompleteModule} from "primeng/autocomplete";
 import {ActionListComponent} from "./pages/management/actions/list/action-list.component";
 import {ActionEditComponent} from "./pages/management/actions/edit/action-edit.component";
 import {ActorListComponent} from "./pages/management/actors/list/actor-list.component";
@@ -29,7 +28,7 @@ import {FunctionListComponent} from "./pages/management/functions/list/function-
 import {FunctionEditComponent} from "./pages/management/functions/edit/function-edit.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {FilterByProjectPipe} from "./pipes/filterByProduct/filter-by-product.pipe";
-import { ProjectViewComponent } from './pages/management/projects/view/project-view.component';
+import {ProjectViewComponent} from './pages/management/projects/view/project-view.component';
 
 @NgModule({
   declarations: [
@@ -64,9 +63,7 @@ import { ProjectViewComponent } from './pages/management/projects/view/project-v
     AngularFirestoreModule,
 
     ReactiveFormsModule,
-    FormsModule,
-
-    AutoCompleteModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [RootComponent]
