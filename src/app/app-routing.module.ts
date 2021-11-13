@@ -33,12 +33,13 @@ import {ProjectViewComponent} from "./pages/management/projects/view/project-vie
 
         { path: 'management/projects', component: ProjectListComponent },
         { path: 'management/projects/new', component: ProjectEditComponent },
-        { path: 'management/projects/:id', component: ProjectViewComponent, children: [
+        { path: 'management/projects/view/:id', component: ProjectViewComponent, children: [
             { path: '', redirectTo: 'cases', pathMatch: 'full' },
             { path: 'cases', component: CaseListComponent },
             { path: 'cases/new', component: CaseEditComponent },
             { path: 'cases/:id', component: CaseEditComponent },
           ] },
+        { path: 'management/projects/:id', component: ProjectEditComponent },
 
         { path: 'management/actors', component: ActorListComponent },
         { path: 'management/actors/new', component: ActorEditComponent },
