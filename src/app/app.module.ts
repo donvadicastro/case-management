@@ -32,6 +32,7 @@ import {ProjectViewComponent} from './pages/management/projects/view/project-vie
 import {PropertyListComponent} from "./pages/management/properties/list/property-list.component";
 import {PropertyEditComponent} from "./pages/management/properties/edit/property-edit.component";
 import {EntityViewComponent} from "./pages/management/entities/view/entity-view.component";
+import { ArrayMapPipe } from './pipes/arrayMap/array-map.pipe';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {EntityViewComponent} from "./pages/management/entities/view/entity-view.
     ProjectViewComponent,
     PropertyListComponent,
     PropertyEditComponent,
-    EntityViewComponent
+    EntityViewComponent,
+    ArrayMapPipe
   ],
   imports: [
     BrowserModule,

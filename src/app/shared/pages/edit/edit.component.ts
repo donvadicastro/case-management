@@ -1,13 +1,15 @@
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
-import {Inject, Injectable, Injector, OnInit} from "@angular/core";
+import {EventEmitter, Inject, Injectable, Injector, OnInit} from "@angular/core";
 import {BaseModel, LookupModel} from "../../entities/baseModel";
 import {AuthService} from "../../../pages/auth/auth.service";
 import {map} from "rxjs/operators";
 
 @Injectable()
 export abstract class AbstractEditComponent<T extends BaseModel> implements OnInit {
+  protected dataLoaded: EventEmitter<any> = new EventEmitter();
+
   protected constructor(@Inject(false) public collectionName: string,
                         public editForm: FormGroup,
                         private injector: Injector) {
@@ -22,7 +24,12 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
         .collection(this.collectionName)
         .doc(activatedRoute.snapshot.params['id'])
         .valueChanges({idField: 'id'})
-        .subscribe(doc => doc && this.editForm.setValue(doc));
+        .subscribe(doc => {
+          doc && this.editForm.setValue(doc);
+          this.dataLoaded.emit(doc);
+        });
+    } else {
+      this.dataLoaded.emit(null);
     }
   }
 
@@ -53,10 +60,26 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
     return item1?.id === item2?.id;
   }
 
-  protected loadDictionary(dictionaryName: string) {
-    const store = this.injector.get(AngularFirestore);
+  public onGroupCheckChange(control: string, collection: LookupModel[], event: any) {
+    const currentValue: LookupModel[] = this.editForm.get(control)?.value;
 
-    return store.collection(dictionaryName).valueChanges({idField: 'id'})
+    if(event.target.checked) {
+      currentValue.push(<LookupModel>collection.find(x => x.id === event.target.value));
+    } else {
+      currentValue.splice(currentValue.findIndex(x => x.id === event.target.value), 1);
+    }
+  }
+
+  public isGroupCheckChecked(control: string, value: LookupModel) {
+    return !!this.editForm.get(control)?.value.find((x: LookupModel) => x.id === value.id);
+  }
+
+  protected loadDictionary(dictionaryName: string, parentId?: string) {
+    const store = this.injector.get(AngularFirestore);
+    const collection = parentId ? store.collection(dictionaryName,
+        query => query.where('parentId', '==', parentId)) : store.collection(dictionaryName);
+
+    return collection.valueChanges({idField: 'id'})
       .pipe(map(changes => changes.map(((x: any) => ({id: x.id, name: x.name})))));
   }
 }

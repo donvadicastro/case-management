@@ -11,9 +11,15 @@
       </option>
     </select>
   </div>
-  <div class="mb-3">
-    <label for="select" class="form-label">Select</label>
-    <input type="text" class="form-control" id="select" formControlName="select">
+  <div class="mb-3" *ngIf="editForm.get('from')?.value">
+    <div><label class="form-label">Select</label></div>
+    <div class="btn-group">
+      <ng-container *ngFor="let n of properties">
+        <input type="checkbox" class="btn-check" id="select-check-{{n.id}}" [checked]="isGroupCheckChecked('select', n)"
+               (change)="onGroupCheckChange('select', properties, $event)" autocomplete="off" [value]="n.id">
+        <label class="btn btn-outline-primary" for="select-check-{{n.id}}">{{n.name}}</label>
+      </ng-container>
+    </div>
   </div>
   <div class="mb-3">
     <label for="where" class="form-label">Where</label>

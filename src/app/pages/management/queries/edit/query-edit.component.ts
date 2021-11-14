@@ -13,19 +13,38 @@ import {LookupModel} from "../../../../shared/entities/baseModel";
 export class QueryEditComponent extends AbstractEditComponent<QueryModel> {
   projects: LookupModel[] = [];
   entities: LookupModel[] = [];
+  properties: LookupModel[] = [];
 
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('queries', fb.group({
       id: [''],
       name: ['', Validators.required],
       from: [null, Validators.required],
-      select: ['', Validators.required],
+      select: [[]],
       where: ['', Validators.required],
       description: [''],
       createdBy: [null],
       createdOn: [null],
     }), injector);
+  }
 
+  ngOnInit() {
+    this.dataLoaded.subscribe((data) => {
+      // listen for changes for "from" field to reload "properties"
+      this.editForm.get('from')?.valueChanges.subscribe((from) => {
+        this.editForm.get('select')?.setValue([]);
+        this.loadProperties(from.id);
+      });
+
+      // initialize default list for saved data
+      data && this.loadProperties(data.from.id);
+    });
+
+    super.ngOnInit();
     this.loadDictionary('entities').subscribe(res => this.entities = res);
+  }
+
+  private loadProperties(parentId: string) {
+    this.loadDictionary('properties', parentId).subscribe(res => this.properties = res);
   }
 }
