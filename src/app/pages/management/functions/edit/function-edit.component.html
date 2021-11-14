@@ -3,6 +3,21 @@
     <label for="name" class="form-label">Name</label>
     <input type="text" class="form-control" id="name" formControlName="name">
   </div>
+  <div class="mb-3" formGroupName="return">
+    <div><label class="form-label">Return type</label></div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="return-type" id="return-type-list" value="list" formControlName="type">
+      <label class="form-check-label" for="return-type-list">List</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="return-type" id="return-type-value" value="value" formControlName="type">
+      <label class="form-check-label" for="return-type-value">Value</label>
+    </div>
+  </div>
+  <div class="mb-3" formGroupName="return">
+    <label for="returnDefault" class="form-label">Return default</label>
+    <input type="text" class="form-control" id="returnDefault" formControlName="default">
+  </div>
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
     <input type="text" class="form-control" id="description" formControlName="description">

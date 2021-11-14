@@ -17,7 +17,11 @@ export class FunctionEditComponent extends AbstractEditComponent<FunctionModel> 
     super('functions', fb.group({
       id: [''],
       name: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
+      return: fb.group({
+        type: ['list', Validators.required],
+        default: [null]
+      }),
       createdBy: [null],
       createdOn: [null],
     }), injector);

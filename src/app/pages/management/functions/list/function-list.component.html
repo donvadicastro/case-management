@@ -4,6 +4,7 @@
   <tr>
     <td>Id</td>
     <td>Name</td>
+    <td>Return</td>
     <td>Description</td>
     <td>CreatedBy</td>
     <td>CreatedOn</td>
@@ -13,6 +14,7 @@
   <tr *ngFor="let entity of entities | async">
     <td><a routerLink="{{entity.id}}">{{ entity.id }}</a></td>
     <td>{{ entity.name }}</td>
+    <td>{{ entity.return.type }}<span *ngIf="entity.return.default">, default: {{entity.return.default }}</span></td>
     <td>{{ entity.description }}</td>
     <td>{{ entity.createdBy?.name }}</td>
     <td>{{ entity.createdOn | date }}</td>
