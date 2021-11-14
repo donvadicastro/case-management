@@ -9,7 +9,7 @@
       <div class="accordion-body">
         <ol class="list-group list-group-flush list-group-numbered">
           <li class="list-group-item" *ngFor="let useCase of useCases$ | async | filterByProject : project.id">
-            <a routerLink="../management/projects/{{project.id}}/cases/{{useCase.id}}">
+            <a routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
               {{ useCase.actor.name }} {{ useCase.action.name }} {{ useCase.entity?.name }}{{ useCase.query?.name }}{{ useCase.function?.name }}
             </a>
           </li>
