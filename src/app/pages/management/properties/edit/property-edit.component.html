@@ -32,7 +32,7 @@
   <div class="mb-3" *ngIf="editForm.get('type')?.value === 'reference'">
     <label for="reference" class="form-label">Reference</label>
     <select id="reference" class="form-control" formControlName="reference" [compareWith]="compareLookupItems">
-      <option *ngFor="let n of entities" [ngValue]="n">
+      <option *ngFor="let n of entities" [ngValue]="{id: n.id, name: n.name}">
         {{ n.name }}
       </option>
     </select>

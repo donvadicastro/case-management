@@ -4,6 +4,7 @@ import {QueryModel} from "../model";
 import {FormBuilder, Validators} from "@angular/forms";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {LookupModel} from "../../../../shared/entities/baseModel";
+import {PropertyModel} from "../../properties/model";
 
 @Component({
   selector: 'app-edit',
@@ -13,7 +14,7 @@ import {LookupModel} from "../../../../shared/entities/baseModel";
 export class QueryEditComponent extends AbstractEditComponent<QueryModel> {
   projects: LookupModel[] = [];
   entities: LookupModel[] = [];
-  properties: LookupModel[] = [];
+  properties: PropertyModel[] = [];
 
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('queries', fb.group({
@@ -45,6 +46,6 @@ export class QueryEditComponent extends AbstractEditComponent<QueryModel> {
   }
 
   private loadProperties(parentId: string) {
-    this.loadDictionary('properties', parentId).subscribe(res => this.properties = res);
+    this.loadDictionary<PropertyModel>('properties', parentId).subscribe(res => this.properties = res);
   }
 }

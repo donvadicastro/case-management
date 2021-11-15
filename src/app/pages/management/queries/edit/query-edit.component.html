@@ -6,7 +6,7 @@
   <div class="mb-3">
     <label for="from" class="form-label">From</label>
     <select id="from" class="form-control" formControlName="from" [compareWith]="compareLookupItems">
-      <option *ngFor="let n of entities" [ngValue]="n">
+      <option *ngFor="let n of entities" [ngValue]="{id: n.id, name: n.name}">
         {{ n.name }}
       </option>
     </select>
@@ -17,7 +17,9 @@
       <ng-container *ngFor="let n of properties">
         <input type="checkbox" class="btn-check" id="select-check-{{n.id}}" [checked]="isGroupCheckChecked('select', n)"
                (change)="onGroupCheckChange('select', properties, $event)" autocomplete="off" [value]="n.id">
-        <label class="btn btn-outline-primary" for="select-check-{{n.id}}">{{n.name}}</label>
+        <label class="btn btn-outline-primary" for="select-check-{{n.id}}">
+          <i *ngIf="n.type === 'key'" class="bi-key-fill"></i> {{n.name}}
+        </label>
       </ng-container>
     </div>
   </div>

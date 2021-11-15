@@ -5,6 +5,7 @@ import {EventEmitter, Inject, Injectable, Injector, OnInit} from "@angular/core"
 import {BaseModel, LookupModel} from "../../entities/baseModel";
 import {AuthService} from "../../../pages/auth/auth.service";
 import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 @Injectable()
 export abstract class AbstractEditComponent<T extends BaseModel> implements OnInit {
@@ -64,7 +65,8 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
     const currentValue: LookupModel[] = this.editForm.get(control)?.value;
 
     if(event.target.checked) {
-      currentValue.push(<LookupModel>collection.find(x => x.id === event.target.value));
+      let entity = <LookupModel>collection.find(x => x.id === event.target.value);
+      currentValue.push({id: entity.id, name: entity.name});
     } else {
       currentValue.splice(currentValue.findIndex(x => x.id === event.target.value), 1);
     }
@@ -74,12 +76,11 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
     return !!this.editForm.get(control)?.value.find((x: LookupModel) => x.id === value.id);
   }
 
-  protected loadDictionary(dictionaryName: string, parentId?: string) {
+  protected loadDictionary<T extends LookupModel>(dictionaryName: string, parentId?: string): Observable<T[]> {
     const store = this.injector.get(AngularFirestore);
     const collection = parentId ? store.collection(dictionaryName,
         query => query.where('parentId', '==', parentId)) : store.collection(dictionaryName);
 
-    return collection.valueChanges({idField: 'id'})
-      .pipe(map(changes => changes.map(((x: any) => ({id: x.id, name: x.name})))));
+    return collection.valueChanges({idField: 'id'}).pipe(map((x: any) => x));
   }
 }
