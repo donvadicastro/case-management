@@ -41,34 +41,34 @@ import {EntityViewComponent} from "./pages/management/entities/view/entity-view.
             { path: 'cases', component: CaseListComponent },
             { path: 'cases/new', component: CaseEditComponent },
             { path: 'cases/:id', component: CaseEditComponent },
+
+            { path: 'actors', component: ActorListComponent },
+            { path: 'actors/new', component: ActorEditComponent },
+            { path: 'actors/:id', component: ActorEditComponent },
+
+            { path: 'actions', component: ActionListComponent },
+            { path: 'actions/new', component: ActionEditComponent },
+            { path: 'actions/:id', component: ActionEditComponent },
+
+            { path: 'entities', component: EntityListComponent },
+            { path: 'entities/new', component: EntityEditComponent },
+            { path: 'entities/view/:id', component: EntityViewComponent, children: [
+                { path: '', redirectTo: 'cases', pathMatch: 'full' },
+                { path: 'properties', component: PropertyListComponent },
+                { path: 'properties/new', component: PropertyEditComponent },
+                { path: 'properties/:id', component: PropertyEditComponent },
+              ] },
+            { path: 'entities/:id', component: EntityEditComponent },
+
+            { path: 'queries', component: QueryListComponent },
+            { path: 'queries/new', component: QueryEditComponent },
+            { path: 'queries/:id', component: QueryEditComponent },
+
+            { path: 'functions', component: FunctionListComponent },
+            { path: 'functions/new', component: FunctionEditComponent },
+            { path: 'functions/:id', component: FunctionEditComponent },
           ] },
         { path: 'management/projects/:id', component: ProjectEditComponent },
-
-        { path: 'management/actors', component: ActorListComponent },
-        { path: 'management/actors/new', component: ActorEditComponent },
-        { path: 'management/actors/:id', component: ActorEditComponent },
-
-        { path: 'management/actions', component: ActionListComponent },
-        { path: 'management/actions/new', component: ActionEditComponent },
-        { path: 'management/actions/:id', component: ActionEditComponent },
-
-        { path: 'management/entities', component: EntityListComponent },
-        { path: 'management/entities/new', component: EntityEditComponent },
-        { path: 'management/entities/view/:id', component: EntityViewComponent, children: [
-            { path: '', redirectTo: 'cases', pathMatch: 'full' },
-            { path: 'properties', component: PropertyListComponent },
-            { path: 'properties/new', component: PropertyEditComponent },
-            { path: 'properties/:id', component: PropertyEditComponent },
-          ] },
-        { path: 'management/entities/:id', component: EntityEditComponent },
-
-        { path: 'management/queries', component: QueryListComponent },
-        { path: 'management/queries/new', component: QueryEditComponent },
-        { path: 'management/queries/:id', component: QueryEditComponent },
-
-        { path: 'management/functions', component: FunctionListComponent },
-        { path: 'management/functions/new', component: FunctionEditComponent },
-        { path: 'management/functions/:id', component: FunctionEditComponent },
       ]}
   ])],
   exports: [RouterModule]

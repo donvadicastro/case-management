@@ -19,6 +19,7 @@ export class QueryEditComponent extends AbstractEditComponent<QueryModel> {
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('queries', fb.group({
       id: [''],
+      parentId: [''],
       name: ['', Validators.required],
       from: [null, Validators.required],
       select: [[]],

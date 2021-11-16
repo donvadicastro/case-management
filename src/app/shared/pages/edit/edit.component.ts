@@ -13,7 +13,7 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
 
   protected constructor(@Inject(false) public collectionName: string,
                         public editForm: FormGroup,
-                        private injector: Injector) {
+                        protected injector: Injector) {
   }
 
   ngOnInit(): void {
@@ -78,8 +78,8 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
 
   protected loadDictionary<T extends LookupModel>(dictionaryName: string, parentId?: string): Observable<T[]> {
     const store = this.injector.get(AngularFirestore);
-    const collection = parentId ? store.collection(dictionaryName,
-        query => query.where('parentId', '==', parentId)) : store.collection(dictionaryName);
+    const id = parentId || sessionStorage.getItem('projectId');
+    const collection = store.collection(dictionaryName, query => query.where('parentId', '==', id));
 
     return collection.valueChanges({idField: 'id'}).pipe(map((x: any) => x));
   }

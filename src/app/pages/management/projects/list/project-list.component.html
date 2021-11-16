@@ -2,21 +2,19 @@
 <table class="table">
   <thead>
   <tr>
-    <td>Id</td>
     <td>Name</td>
-    <td>Use cases</td>
     <td>CreatedBy</td>
     <td>CreatedOn</td>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let entity of entities | async">
-    <td><a routerLink="{{entity.id}}">{{ entity.id }}</a></td>
-    <td>{{ entity.name }}</td>
-    <td><a class="btn btn-sm btn-secondary" routerLink="view/{{entity.id}}">view use cases</a></td>
+    <td><a routerLink="{{entity.id}}">{{ entity.name }}</a></td>
     <td>{{ entity.createdBy?.name }}</td>
     <td>{{ entity.createdOn | date }}</td>
     <td>
+      <a class="btn btn-sm btn-secondary" routerLink="view/{{entity.id}}">manage</a>&nbsp;
+
       <button class="btn btn-sm btn-danger" (click)="onDelete(entity.id)">delete</button>
     </td>
   </tr>

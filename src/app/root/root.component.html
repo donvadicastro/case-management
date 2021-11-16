@@ -7,19 +7,21 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a routerLink="dashboard" class="nav-link px-2 text-secondary"><b><span class="badge bg-secondary">DASHBOARD</span></b></a></li>
-        <li *ngFor="let route of ['projects', 'actors', 'actions', 'entities', 'queries', 'functions']">
-          <a routerLink="management/{{route}}" routerLinkActive="text-light" class="nav-link px-2 text-secondary">
-            <b>{{route.toUpperCase()}}</b>
-          </a>
-        </li>
+        <li><a routerLink="management/projects" class="nav-link px-2 text-secondary"><b>PROJECTS</b></a></li>
+
+        <ng-container *ngIf="routeUrl?.startsWith('/management/projects/view/')">
+          <li *ngFor="let route of ['cases', 'actors', 'actions', 'entities', 'queries', 'functions']">
+            <a routerLink="management/projects/view/{{projectId}}/{{route}}" routerLinkActive="text-light" class="nav-link px-2 text-secondary">
+              <b>{{route.toUpperCase()}}</b>
+            </a>
+          </li>
+        </ng-container>
       </ul>
 
       <div class="text-end">
         <div *ngIf="authService.isLoggedIn; else anonymousBlock">
           <button type="button" class="btn btn-secondary me-2" routerLink="profile">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
-            </svg>
+            <i class="bi-person-fill"></i>
           </button>
           <button type="button" class="btn btn-outline-light me-2" (click)="authService.SignOut()">Logout</button>
         </div>

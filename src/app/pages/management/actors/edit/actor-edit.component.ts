@@ -16,6 +16,7 @@ export class ActorEditComponent extends AbstractEditComponent<ActorModel> {
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('actors', fb.group({
       id: [''],
+      parentId: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
       createdBy: [null],

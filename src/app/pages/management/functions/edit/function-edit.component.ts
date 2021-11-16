@@ -16,6 +16,7 @@ export class FunctionEditComponent extends AbstractEditComponent<FunctionModel> 
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('functions', fb.group({
       id: [''],
+      parentId: [''],
       name: ['', Validators.required],
       description: [''],
       return: fb.group({

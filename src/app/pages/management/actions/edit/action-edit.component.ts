@@ -13,6 +13,7 @@ export class ActionEditComponent extends AbstractEditComponent<ActionModel> {
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('actions', fb.group({
       id: [''],
+      parentId: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
       createdBy: [null],

@@ -13,6 +13,7 @@ export class EntityEditComponent extends AbstractEditComponent<EntityModel> {
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('entities', fb.group({
       id:           [''],
+      parentId:     [''],
       name:         ['', Validators.required],
       description:  [''],
       createdBy:    [null],

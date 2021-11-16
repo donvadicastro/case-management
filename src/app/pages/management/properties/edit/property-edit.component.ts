@@ -18,6 +18,7 @@ export class PropertyEditComponent extends AbstractEditComponent<PropertyModel> 
   constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
     super('properties', fb.group({
       id:           [''],
+      parentId:     [''],
       name:         ['', Validators.required],
       type:         ['', Validators.required],
       formula:      ['', CustomValidators.requiredIf('type', 'calculated')],
