@@ -38,13 +38,17 @@ export class CaseEditComponent extends AbstractEditComponent<CaseModel> {
       createdOn:    [null],
     }), injector);
 
+    this.dataLoaded.subscribe(() => this.editForm.get('type')?.valueChanges.subscribe(() =>
+      this.editForm.patchValue({entity: null, query: null, function: null})));
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+
     this.loadDictionary('actors').subscribe(res => this.actors = res);
     this.loadDictionary('actions').subscribe(res => this.actions = res);
     this.loadDictionary('entities').subscribe(res => this.entities = res);
     this.loadDictionary('queries').subscribe(res => this.queries = res);
     this.loadDictionary('functions').subscribe(res => this.functions = res);
-
-    this.editForm.get('type')?.valueChanges.subscribe(() =>
-      this.editForm.patchValue({entity: null, query: null, function: null}));
   }
 }

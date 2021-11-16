@@ -33,6 +33,7 @@ import {PropertyListComponent} from "./pages/management/properties/list/property
 import {PropertyEditComponent} from "./pages/management/properties/edit/property-edit.component";
 import {EntityViewComponent} from "./pages/management/entities/view/entity-view.component";
 import { ArrayMapPipe } from './pipes/arrayMap/array-map.pipe';
+import { GroupByPipe } from './pipes/groupBy/group-by.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ArrayMapPipe } from './pipes/arrayMap/array-map.pipe';
     PropertyListComponent,
     PropertyEditComponent,
     EntityViewComponent,
-    ArrayMapPipe
+    ArrayMapPipe,
+    GroupByPipe
   ],
   imports: [
     BrowserModule,

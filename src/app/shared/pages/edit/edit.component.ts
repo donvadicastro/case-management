@@ -4,8 +4,9 @@ import {FormGroup} from "@angular/forms";
 import {EventEmitter, Inject, Injectable, Injector, OnInit} from "@angular/core";
 import {BaseModel, LookupModel} from "../../entities/baseModel";
 import {AuthService} from "../../../pages/auth/auth.service";
-import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
+
 
 @Injectable()
 export abstract class AbstractEditComponent<T extends BaseModel> implements OnInit {
@@ -81,6 +82,10 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
     const id = parentId || sessionStorage.getItem('projectId');
     const collection = store.collection(dictionaryName, query => query.where('parentId', '==', id));
 
+    // return collection.get().pipe(
+    //   map((x: any) => x.docs),
+    //   map((x: any) => x.map((y: any) => ({...y.data(), id: y.id})))
+    // );
     return collection.valueChanges({idField: 'id'}).pipe(map((x: any) => x));
   }
 }
