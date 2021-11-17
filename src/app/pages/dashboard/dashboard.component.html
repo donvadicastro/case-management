@@ -15,15 +15,33 @@
             | keyvalue">
 
             {{ actorsMap.key }}
-
             <ol class="list-group list-group-flush list-group-numbered">
-              <li class="list-group-item" *ngFor="let actionMap of actorsMap.value | groupBy : 'action.name' | keyvalue">
-                {{ actionMap.key }}
-
+              <li class="list-group-item" *ngFor="let entitiesMap of actorsMap.value | groupBy : 'entity.name' | keyvalue">
+                {{ entitiesMap.key }}
                 <ol class="list-group list-group-flush list-group-numbered">
-                  <li class="list-group-item" *ngFor="let useCase of actionMap.value">
+                  <li class="list-group-item" *ngFor="let useCase of entitiesMap.value">
                     <a routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
-                      {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
+                      {{ useCase.action?.name }}
+                    </a>
+                  </li>
+                </ol>
+              </li>
+              <li class="list-group-item" *ngFor="let queriesMap of actorsMap.value | groupBy : 'query.name' | keyvalue">
+                {{ queriesMap.key }}
+                <ol class="list-group list-group-flush list-group-numbered">
+                  <li class="list-group-item" *ngFor="let useCase of queriesMap.value">
+                    <a routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
+                      {{ useCase.action?.name }}
+                    </a>
+                  </li>
+                </ol>
+              </li>
+              <li class="list-group-item" *ngFor="let functionsMap of actorsMap.value | groupBy : 'function.name' | keyvalue">
+                {{ functionsMap.key }}
+                <ol class="list-group list-group-flush list-group-numbered">
+                  <li class="list-group-item" *ngFor="let useCase of functionsMap.value">
+                    <a routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
+                      {{ useCase.action?.name }}
                     </a>
                   </li>
                 </ol>
