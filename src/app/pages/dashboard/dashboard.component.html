@@ -20,8 +20,9 @@
                 {{ entitiesMap.key }}
                 <ol class="list-group list-group-flush list-group-numbered">
                   <li class="list-group-item" *ngFor="let useCase of entitiesMap.value">
-                    <a routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
-                      {{ useCase.action?.name }}
+                    {{ useCase.action?.name }}:
+                    <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
+                      {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
                     </a>
                   </li>
                 </ol>
@@ -30,8 +31,9 @@
                 {{ queriesMap.key }}
                 <ol class="list-group list-group-flush list-group-numbered">
                   <li class="list-group-item" *ngFor="let useCase of queriesMap.value">
-                    <a routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
-                      {{ useCase.action?.name }}
+                    {{ useCase.action?.name }}:
+                    <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
+                      {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
                     </a>
                   </li>
                 </ol>
@@ -40,8 +42,9 @@
                 {{ functionsMap.key }}
                 <ol class="list-group list-group-flush list-group-numbered">
                   <li class="list-group-item" *ngFor="let useCase of functionsMap.value">
-                    <a routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
-                      {{ useCase.action?.name }}
+                    {{ useCase.action?.name }}:
+                    <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
+                      {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
                     </a>
                   </li>
                 </ol>
