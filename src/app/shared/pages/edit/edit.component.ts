@@ -53,8 +53,10 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
     } else {
       parentId && (data.parentId = parentId);
 
-      store.collection(this.collectionName).add({...data, createdOn: new Date().getTime(), createdBy: user}).then(() =>
-        router.navigate([".."], { relativeTo: activatedRoute }));
+      store.collection(this.collectionName).add({...data, createdOn: new Date().getTime(), createdBy: user}).then(() => {
+        activatedRoute.snapshot.queryParams['close-on-success'] ? window.close() :
+          router.navigate([".."], { relativeTo: activatedRoute });
+      });
     }
   }
 

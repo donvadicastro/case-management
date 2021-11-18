@@ -6,6 +6,8 @@
         {{ n.name }}
       </option>
     </select>
+    <i class="bi-info-square" data-toggle="tooltip" data-placement="top" title="Navigated to new tab. After creation list will be auto-populated with new value."></i>&nbsp;
+    <a routerLink="../../actors/new?close-on-success=true" target="_blank" >create new actor</a>
   </div>
   <div class="mb-3">
     <label for="action" class="form-label">Action</label>
@@ -14,6 +16,8 @@
         {{ n.name }}
       </option>
     </select>
+    <i class="bi-info-square" data-toggle="tooltip" data-placement="top" title="Navigated to new tab. After creation list will be auto-populated with new value."></i>&nbsp;
+    <a routerLink="../../actions/new?close-on-success=true" target="_blank">create new action</a>
   </div>
   <div class="mb-3">
     <div class="form-check form-check-inline">
@@ -36,6 +40,8 @@
         {{ n.name }}
       </option>
     </select>
+    <i class="bi-info-square" data-toggle="tooltip" data-placement="top" title="Navigated to new tab. After creation list will be auto-populated with new value."></i>&nbsp;
+    <a routerLink="../../entities/new?close-on-success=true" target="_blank">create new entity</a>
   </div>
   <div class="mb-3" *ngIf="editForm.get('type')?.value === 'query'">
     <label for="query" class="form-label">Query</label>
@@ -44,6 +50,8 @@
         {{ n.name }}
       </option>
     </select>
+    <i class="bi-info-square" data-toggle="tooltip" data-placement="top" title="Navigated to new tab. After creation list will be auto-populated with new value."></i>&nbsp;
+    <a routerLink="../../queries/new?close-on-success=true" target="_blank">create new query</a>
   </div>
   <div class="mb-3" *ngIf="editForm.get('type')?.value === 'function'">
     <label for="function" class="form-label">Function</label>
@@ -52,6 +60,8 @@
         {{ n.name }}
       </option>
     </select>
+    <i class="bi-info-square" data-toggle="tooltip" data-placement="top" title="Navigated to new tab. After creation list will be auto-populated with new value."></i>&nbsp;
+    <a routerLink="../../functions/new?close-on-success=true" target="_blank">create new function</a>
   </div>
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
