@@ -20,7 +20,7 @@
                 {{ entitiesMap.key }}
                 <ol class="list-group list-group-flush list-group-numbered">
                   <li class="list-group-item" *ngFor="let useCase of entitiesMap.value">
-                    {{ useCase.action?.name }}:
+                    {{ useCase.action?.name }}
                     <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
                       {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
                     </a>
@@ -31,7 +31,7 @@
                 {{ queriesMap.key }}
                 <ol class="list-group list-group-flush list-group-numbered">
                   <li class="list-group-item" *ngFor="let useCase of queriesMap.value">
-                    {{ useCase.action?.name }}:
+                    {{ useCase.action?.name }}
                     <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
                       {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
                     </a>
@@ -42,7 +42,7 @@
                 {{ functionsMap.key }}
                 <ol class="list-group list-group-flush list-group-numbered">
                   <li class="list-group-item" *ngFor="let useCase of functionsMap.value">
-                    {{ useCase.action?.name }}:
+                    {{ useCase.action?.name }}
                     <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
                       {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
                     </a>
