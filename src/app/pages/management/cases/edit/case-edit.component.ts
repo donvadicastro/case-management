@@ -45,10 +45,26 @@ export class CaseEditComponent extends AbstractEditComponent<CaseModel> {
   ngOnInit() {
     super.ngOnInit();
 
+    if (this.activatedRoute.snapshot.queryParams['entity']) {
+      this.editForm.patchValue({type: 'entity'});
+    }
+
+    if (this.activatedRoute.snapshot.queryParams['query']) {
+      this.editForm.patchValue({type: 'query'});
+    }
+
+    if (this.activatedRoute.snapshot.queryParams['function']) {
+      this.editForm.patchValue({type: 'function'});
+    }
+
     this.loadDictionary('actors').subscribe(res => this.actors = res);
     this.loadDictionary('actions').subscribe(res => this.actions = res);
     this.loadDictionary('entities').subscribe(res => this.entities = res);
     this.loadDictionary('queries').subscribe(res => this.queries = res);
     this.loadDictionary('functions').subscribe(res => this.functions = res);
+  }
+
+  checkSelected(param: string, value?: string): boolean {
+    return this.activatedRoute.snapshot.queryParams[param] === value;
   }
 }
