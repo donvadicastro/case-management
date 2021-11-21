@@ -10,7 +10,7 @@ describe('UseCase Test', () => {
   })
 
   it('use case creation should work', () => {
-    const id = Cypress._.uniqueId('test');
+    const id = 'test' + new Date().getTime();
 
     cy.visit('/management/projects');
 
