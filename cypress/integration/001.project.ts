@@ -2,7 +2,7 @@ describe('Project Test', () => {
   const id = new Date().getTime();
   Cypress.env('uniqueId', id)
 
-  it('use case creation should work', () => {
+  it('project creation should work', () => {
     cy.visit('/management/projects');
 
     // create project
@@ -14,6 +14,6 @@ describe('Project Test', () => {
     cy.get(`a[title="${id}Project"]`).should('contain', 'manage').click();
 
     //should be in project
-    cy.get('h3').should('contain', id +  'Project');
+    cy.get('h3').should('contain', id + 'Project');
   })
 })
