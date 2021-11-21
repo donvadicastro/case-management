@@ -15,5 +15,12 @@ describe('Project Test', () => {
 
     //should be in project
     cy.get('h3').should('contain', id + 'Project');
+
+    //should be activated other links
+    cy.get('a.nav-link').contains('ACTORS');
+    cy.get('a.nav-link').contains('ACTIONS');
+    cy.get('a.nav-link').contains('ENTITIES');
+    cy.get('a.nav-link').contains('QUERIES');
+    cy.get('a.nav-link').contains('FUNCTIONS');
   })
 })
