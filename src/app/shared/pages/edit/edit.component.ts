@@ -42,7 +42,7 @@ export abstract class AbstractEditComponent<T extends BaseModel> implements OnIn
     const authService = this.injector.get(AuthService);
 
     const id = activatedRoute.snapshot.params['id'];
-    const parentId =activatedRoute.parent?.snapshot.params['id'];
+    const parentId = activatedRoute.parent?.snapshot.params['id'];
 
     const data = <BaseModel>this.editForm.value;
     const user = {id: authService.currentUser?.uid, name: authService.currentUser?.displayName};

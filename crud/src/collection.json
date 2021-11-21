@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "crud": {
+      "description": "Generate all set of pages to support CRUD operations in the project.",
+      "factory": "./crud/index#crud",
+      "schema": "./crud/schema.json"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+import {BaseModel} from "../../../shared/entities/baseModel";
+
+export interface <%= classify(name) %>Model extends BaseModel {
+  name: string
+  description: string
+}

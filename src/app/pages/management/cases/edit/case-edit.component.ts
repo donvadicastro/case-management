@@ -45,10 +45,55 @@ export class CaseEditComponent extends AbstractEditComponent<CaseModel> {
   ngOnInit() {
     super.ngOnInit();
 
-    this.loadDictionary('actors').subscribe(res => this.actors = res);
-    this.loadDictionary('actions').subscribe(res => this.actions = res);
-    this.loadDictionary('entities').subscribe(res => this.entities = res);
-    this.loadDictionary('queries').subscribe(res => this.queries = res);
-    this.loadDictionary('functions').subscribe(res => this.functions = res);
+    this.loadDictionary('actors').subscribe(res => {
+      this.actors = res;
+
+      const entity = this.actors.find(x => x.name === this.activatedRoute.snapshot.queryParams['actor']);
+      entity && this.editForm.patchValue({ actor: CaseEditComponent.convertLookup(entity)});
+    });
+
+    this.loadDictionary('actions').subscribe(res => {
+      this.actions = res;
+
+      const entity = this.actions.find(x => x.name === this.activatedRoute.snapshot.queryParams['action']);
+      entity && this.editForm.patchValue({ action: CaseEditComponent.convertLookup(entity)});
+    });
+
+    this.loadDictionary('entities').subscribe(res => {
+      this.entities = res;
+
+      const entity = this.entities.find(x => x.name === this.activatedRoute.snapshot.queryParams['entity']);
+      entity && this.editForm.patchValue({ type: 'entity', entity: CaseEditComponent.convertLookup(entity)});
+    });
+
+    this.loadDictionary('queries').subscribe(res => {
+      this.queries = res;
+
+      const entity = this.queries.find(x => x.name === this.activatedRoute.snapshot.queryParams['query']);
+      entity && this.editForm.patchValue({ type: 'query', query: CaseEditComponent.convertLookup(entity)});
+    });
+
+    this.loadDictionary('functions').subscribe(res => {
+      this.functions = res;
+
+      const entity = this.functions.find(x => x.name === this.activatedRoute.snapshot.queryParams['function']);
+      entity && this.editForm.patchValue({ type: 'function', function: CaseEditComponent.convertLookup(entity)});
+    });
+  }
+
+  checkSelected(param: string, value?: string): boolean {
+    return this.activatedRoute.snapshot.queryParams[param] === value;
+  }
+
+  onChange() {
+    const data: CaseModel = this.editForm.getRawValue();
+
+    if (data.actor?.name && data.action?.name && (data.entity?.name || data.query?.name || data.function?.name)) {
+      this.editForm.get('description')?.setValue(`${data.actor.name} ${data.action.name} ${data.entity?.name || data.query?.name || data.function?.name}`);
+    }
+  }
+
+  private static convertLookup(entity: LookupModel): LookupModel {
+    return {id: entity.id, name: entity.name};
   }
 }

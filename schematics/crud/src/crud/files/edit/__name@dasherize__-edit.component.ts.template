@@ -1,0 +1,22 @@
+import {Component, Injector} from '@angular/core';
+import {AbstractRootEditComponent} from "../../../../shared/pages/root/edit/root-edit.component";
+import {ActionModel} from "../model";
+import {FormBuilder, Validators} from "@angular/forms";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+
+@Component({
+  selector: 'app-edit',
+  templateUrl: './__name@dasherize__-edit.component.html.template',
+  styleUrls: ['./__name@dasherize__-edit.component.scss']
+})
+export class <%= classify(name) %>EditComponent extends AbstractRootEditComponent<<%= classify(name) %>Model> {
+  constructor(private fb: FormBuilder, private store: AngularFirestore, injector: Injector) {
+    super('<%= plural %>', fb.group({
+      id: [''],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      createdBy: [null],
+      createdOn: [null],
+    }), injector);
+  }
+}

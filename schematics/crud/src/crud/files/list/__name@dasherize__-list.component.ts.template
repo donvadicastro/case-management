@@ -1,0 +1,13 @@
+import {Component} from '@angular/core';
+import {AbstractRootListComponent} from "../../../../shared/pages/root/list/root-list.component";
+import {ActionModel} from "../model";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+
+@Component({
+  selector: 'app-list',
+  templateUrl: './__name@dasherize__-list.component.html',
+  styleUrls: ['./__name@dasherize__-list.component.scss']
+})
+export class <%= classify(name) %>ListComponent extends AbstractRootListComponent<<%= classify(name) %>Model> {
+  constructor(store: AngularFirestore) { super('<%= plural %>', store); }
+}
