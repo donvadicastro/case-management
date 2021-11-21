@@ -30,7 +30,10 @@
                   <li class="list-group-item" *ngFor="let useCase of entitiesMap.value">
                     {{ useCase.action?.name }}
                     <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
-                      {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
+                      <ng-container *ngIf="useCase.description; else elseBlock">{{ useCase.description }}</ng-container>
+                      <ng-template #elseBlock>
+                        {{ useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
+                      </ng-template>
                     </a>
                   </li>
                 </ol>
@@ -45,7 +48,10 @@
                   <li class="list-group-item" *ngFor="let useCase of queriesMap.value">
                     {{ useCase.action?.name }}
                     <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
-                      {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
+                      <ng-container *ngIf="useCase.description; else elseBlock">{{ useCase.description }}</ng-container>
+                      <ng-template #elseBlock>
+                        {{ useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
+                      </ng-template>
                     </a>
                   </li>
                 </ol>
@@ -59,7 +65,10 @@
                   <li class="list-group-item" *ngFor="let useCase of functionsMap.value">
                     {{ useCase.action?.name }}
                     <a class="float-end" routerLink="../management/projects/view/{{project.id}}/cases/{{useCase.id}}">
-                      {{useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
+                      <ng-container *ngIf="useCase.description; else elseBlock">{{ useCase.description }}</ng-container>
+                      <ng-template #elseBlock>
+                        {{ useCase.actor?.name}} {{useCase.action?.name}} {{ useCase.entity?.name || useCase.query?.name || useCase.function?.name }}
+                      </ng-template>
                     </a>
                   </li>
                 </ol>

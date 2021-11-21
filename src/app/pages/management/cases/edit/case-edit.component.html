@@ -1,8 +1,8 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
   <div class="mb-3">
     <label for="actor" class="form-label">Actor</label>
-    <select id="actor" class="form-control" formControlName="actor" [compareWith]="compareLookupItems">
-      <option *ngFor="let n of actors" [ngValue]="{id: n.id, name: n.name}" [selected]="n.id === editForm.get('actor')?.value?.id || checkSelected('actor', n?.name)">
+    <select id="actor" class="form-control" formControlName="actor" [compareWith]="compareLookupItems" (change)="onChange()">
+      <option *ngFor="let n of actors" [ngValue]="{id: n.id, name: n.name}" [selected]="n.id === editForm.get('actor')?.value?.id">
         {{ n.name }}
       </option>
     </select>
@@ -11,7 +11,7 @@
   </div>
   <div class="mb-3">
     <label for="action" class="form-label">Action</label>
-    <select id="action" class="form-control" formControlName="action" [compareWith]="compareLookupItems">
+    <select id="action" class="form-control" formControlName="action" [compareWith]="compareLookupItems" (change)="onChange()">
       <option *ngFor="let n of actions" [ngValue]="{id: n.id, name: n.name}" [selected]="n.id === editForm.get('action')?.value?.id || checkSelected('action', n?.name)">
         {{ n.name }}
       </option>
@@ -35,7 +35,7 @@
   </div>
   <div class="mb-3" *ngIf="editForm.get('type')?.value === 'entity'">
     <label for="entity" class="form-label">Entity</label>
-    <select id="entity" class="form-control" formControlName="entity" [compareWith]="compareLookupItems">
+    <select id="entity" class="form-control" formControlName="entity" [compareWith]="compareLookupItems" (change)="onChange()">
       <option *ngFor="let n of entities" [ngValue]="{id: n.id, name: n.name}" [selected]="n.id === editForm.get('entity')?.value?.id || checkSelected('entity', n?.name)">
         {{ n.name }}
       </option>
@@ -45,7 +45,7 @@
   </div>
   <div class="mb-3" *ngIf="editForm.get('type')?.value === 'query'">
     <label for="query" class="form-label">Query</label>
-    <select id="query" class="form-control" formControlName="query" [compareWith]="compareLookupItems">
+    <select id="query" class="form-control" formControlName="query" [compareWith]="compareLookupItems" (change)="onChange()">
       <option *ngFor="let n of queries" [ngValue]="{id: n.id, name: n.name}" [selected]="n.id === editForm.get('query')?.value?.id || checkSelected('query', n?.name)">
         {{ n.name }}
       </option>
@@ -55,7 +55,7 @@
   </div>
   <div class="mb-3" *ngIf="editForm.get('type')?.value === 'function'">
     <label for="function" class="form-label">Function</label>
-    <select id="function" class="form-control" formControlName="function" [compareWith]="compareLookupItems">
+    <select id="function" class="form-control" formControlName="function" [compareWith]="compareLookupItems" (change)="onChange()">
       <option *ngFor="let n of functions" [ngValue]="{id: n.id, name: n.name}" [selected]="n.id === editForm.get('function')?.value?.id || checkSelected('function', n?.name)">
         {{ n.name }}
       </option>
