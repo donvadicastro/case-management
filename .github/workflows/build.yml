@@ -27,8 +27,8 @@ jobs:
           start: npm start
           wait-on: http://localhost:4200
     env:
-      authLogin: ${{ secrets.AUTHLOGIN }}
-      authPass: ${{ secrets.AUTHPASS }}
+      CYPRESS_authLogin: ${{ secrets.AUTHLOGIN }}
+      CYPRESS_authPass: ${{ secrets.AUTHPASS }}
 
 #  test: # make sure the action works on a clean machine without building
 #    runs-on: ubuntu-latest
