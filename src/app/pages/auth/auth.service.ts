@@ -6,6 +6,7 @@ import {User} from "../../shared/services/user";
 import firebase from "firebase/compat/app";
 import {BehaviorSubject} from "rxjs";
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +43,7 @@ export class AuthService {
   SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
+        this.ngZone.run(() => this.router.navigate(['dashboard']));
         this.SetUserData(result.user);
       }).catch((error: any) => {
         window.alert(error.message)
@@ -66,7 +65,7 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(<string>sessionStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false);
+    return (user !== null && (environment.production ? user.emailVerified !== false : true));
   }
 
   // Sign in with Google

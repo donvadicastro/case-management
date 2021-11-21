@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpParams} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-sign-in',
@@ -9,6 +10,8 @@ import {HttpParams} from "@angular/common/http";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  production = environment.production;
+
   constructor(public authService: AuthService, private router: Router, private route: ActivatedRoute) {
     const redirectTo = this.parseRedirectUrl();
 
