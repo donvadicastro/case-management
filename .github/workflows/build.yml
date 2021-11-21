@@ -25,6 +25,10 @@ jobs:
         with:
           build: npm run build
           start: npm start
+          wait-on: http://localhost:4200
+    env:
+      authLogin: ${{ secrets.AUTHLOGIN }}
+      authPass: ${{ secrets.AUTHPASS }}
 
 #  test: # make sure the action works on a clean machine without building
 #    runs-on: ubuntu-latest
