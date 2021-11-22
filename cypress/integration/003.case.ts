@@ -1,4 +1,4 @@
-describe('UseCase Test', () => {
+xdescribe('UseCase Test', () => {
   const id = Cypress.env('uniqueId');
 
   it('use case creation for entity should work', () => {
