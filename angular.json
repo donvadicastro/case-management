@@ -117,6 +117,37 @@
             "firebaseProject": "casemanagement-d7eb6",
             "firebaseHostingSite": "casemanagement-d7eb6"
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-firebase:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-firebase:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-firebase:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-firebase:serve:production"
+            }
+          }
         }
       }
     }

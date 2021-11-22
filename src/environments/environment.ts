@@ -4,12 +4,12 @@
 
 export const environment = {
   firebase: {
-    apiKey: "AIzaSyBW2VlfzUrxKhMeyHU3H0MZJ1SGijs6pq4",
-    authDomain: "casemanagement-d7eb6.firebaseapp.com",
-    projectId: "casemanagement-d7eb6",
-    storageBucket: "casemanagement-d7eb6.appspot.com",
-    messagingSenderId: "432654386248",
-    appId: "1:432654386248:web:40c329bd54c52ca000c47d"
+    apiKey: "AIzaSyC8KFsoknlrGWQ9HJkDV7BZAnFrondpF5E",
+    authDomain: "casemanagementtest-8167f.firebaseapp.com",
+    projectId: "casemanagementtest-8167f",
+    storageBucket: "casemanagementtest-8167f.appspot.com",
+    messagingSenderId: "632164923895",
+    appId: "1:632164923895:web:45eb06a7dd70f50aca96f2"
   },
   production: false
 };
