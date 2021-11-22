@@ -1,4 +1,4 @@
-describe('Resources Test', () => {
+xdescribe('Resources Test', () => {
   const id = Cypress.env('uniqueId');
 
   it('actor creation should work', () => {
