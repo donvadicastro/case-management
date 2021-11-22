@@ -2,7 +2,7 @@ describe('Resources Test', () => {
   const id = Cypress.env('uniqueId');
 
   it('actor creation should work', () => {
-    cy.get('a.nav-link').contains('ACTORS').click();
+    cy.get('a.nav-link').click();
     cy.get('.btn-primary').should('contain', 'Add Actor').click();
     cy.get('input[formcontrolname=name]').type(id + 'Actor');
     cy.get('input[formcontrolname=description]').type(id + 'Actor Description');
