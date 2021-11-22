@@ -25,8 +25,6 @@ describe('Project Test', () => {
   })
 
   describe('Resources Test', () => {
-    const id = Cypress.env('uniqueId');
-
     it('actor creation should work', () => {
       cy.get('a.nav-link').click();
       cy.get('.btn-primary').should('contain', 'Add Actor').click();
