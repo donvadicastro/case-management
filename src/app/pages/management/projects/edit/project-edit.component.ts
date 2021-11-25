@@ -12,6 +12,7 @@ export class ProjectEditComponent extends AbstractEditComponent<ProjectModel> {
   constructor(private fb: FormBuilder, injector: Injector) {
     super('projects', fb.group({
       id: [''],
+      isTemplate: [false, Validators.required],
       name: ['', Validators.required],
       createdBy: [{}],
       createdOn: [''],

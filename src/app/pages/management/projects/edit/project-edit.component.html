@@ -3,6 +3,13 @@
     <label for="name" class="form-label">Project Name</label>
     <input type="text" class="form-control" id="name" formControlName="name">
   </div>
+  <div class="mb-3 form-check">
+    <input class="form-check-input" type="checkbox" id="isTemplate" formControlName="isTemplate">
+    <label class="form-check-label" for="isTemplate">
+      Template Project
+      <i class="bi-info-square" data-toggle="tooltip" data-placement="top" title="All resources created inside templated project will be shareable all at once."></i>&nbsp;
+    </label>
+  </div>
   <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
   <a class="btn" routerLink="..">Back</a>
 </form>
