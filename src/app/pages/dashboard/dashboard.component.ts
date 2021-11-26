@@ -22,7 +22,7 @@ export class DashboardComponent {
 
     this.useCases$ = this.loadData('cases') as Observable<CaseModel[]>;
     this.projects$ = this.loadData('projects',
-        query => query.where('isTemplate', '==', true)) as Observable<ProjectModel[]>;
+        query => query.where('isTemplate', '==', false)) as Observable<ProjectModel[]>;
 
     concat(this.projects$, this.useCases$).pipe(tap(() => this.loading = false)).subscribe();
   }
