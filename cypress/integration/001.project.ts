@@ -19,13 +19,7 @@ describe('Project Test', () => {
   const projectListPage = new ProjectListPage();
 
   it('project creation should work', () => {
-    projectListPage.navigateTo();
-
-    // create project
-    projectListPage.navigateToCreate();
-
-    projectEditPage.fill({name: id + 'Project', isTemplate: false});
-    projectEditPage.submit();
+    projectListPage.create({name: id + 'Project', isTemplate: false}, projectEditPage);
 
     // check created and navigate
     cy.get(`a[title="${id}Project"]`).should('contain', 'manage').click();
@@ -58,52 +52,27 @@ describe('Project Test', () => {
     const functionEditPage = new FunctionEditPage();
 
     it('actor creation should work', () => {
-      actorListPage.navigateTo();
-      actorListPage.navigateToCreate();
-
-      actorEditPage.fill({name: id + 'Actor', description: id + 'Actor Description'});
-      actorEditPage.submit();
-
+      actorListPage.create({name: `${id}Actor`, description: id + 'Actor Description'}, actorEditPage);
       actorListPage.verifyInList(`${id}Actor`);
     })
 
     it('action creation should work', () => {
-      actionListPage.navigateTo();
-      actionListPage.navigateToCreate();
-
-      actionEditPage.fill({name: id + 'Action', description: id + 'Action Description'});
-      actionEditPage.submit();
-
+      actionListPage.create({name: `${id}Action`, description: id + 'Action Description'}, actionEditPage);
       actionListPage.verifyInList(`${id}Action`);
     })
 
     it('entity creation should work', () => {
-      entityListPage.navigateTo();
-      entityListPage.navigateToCreate();
-
-      entityEditPage.fill({name: id + 'Entity', description: id + 'Entity Description'});
-      entityEditPage.submit();
-
+      entityListPage.create({name: `${id}Entity`, description: id + 'Entity Description'}, entityEditPage);
       entityListPage.verifyInList(`${id}Entity`);
     })
 
     it('query creation should work', () => {
-      queryListPage.navigateTo();
-      queryListPage.navigateToCreate();
-
-      queryEditPage.fill({name: `${id}Query`, description: 'Query Description', from: `${id}Entity`, where: 'Query Where'});
-      queryEditPage.submit();
-
+      queryListPage.create({name: `${id}Query`, description: 'Query Description', from: `${id}Entity`, where: 'Query Where'}, queryEditPage);
       queryListPage.verifyInList(`${id}Query`);
     })
 
     it('function creation should work', () => {
-      functionListPage.navigateTo();
-      functionListPage.navigateToCreate();
-
-      functionEditPage.fill({name: `${id}Function`, description: id + 'Function Description'});
-      functionEditPage.submit();
-
+      functionListPage.create({name: `${id}Function`, description: id + 'Function Description'}, functionEditPage);
       functionListPage.verifyInList(`${id}Function`);
     })
   })
@@ -112,33 +81,18 @@ describe('Project Test', () => {
     const caseEditPage = new CaseEditPage();
     const caseListPage = new CaseListPage();
 
-    it('use case creation for entity should work', () => {
-      caseListPage.navigateTo();
-      caseListPage.navigateToCreate();
-
-      caseEditPage.fill({actor: `${id}Actor`, action: `${id}Action`, type: 'entity', entity: `${id}Entity`});
-      caseEditPage.submit();
-
+    it('template use case creation for entity should work', () => {
+      caseListPage.create({actor: `${id}Actor`, action: `${id}Action`, type: 'entity', entity: `${id}Entity`}, caseEditPage);
       caseListPage.verifyInList(`${id}Actor ${id}Action ${id}Entity`);
     })
 
-    it('use case creation for query should work', () => {
-      caseListPage.navigateTo();
-      caseListPage.navigateToCreate();
-
-      caseEditPage.fill({actor: `${id}Actor`, action: `${id}Action`, type: 'query', query: `${id}Query`});
-      caseEditPage.submit();
-
+    it('template use case creation for query should work', () => {
+      caseListPage.create({actor: `${id}Actor`, action: `${id}Action`, type: 'query', query: `${id}Query`}, caseEditPage);
       caseListPage.verifyInList(`${id}Actor ${id}Action ${id}Query`);
     })
 
-    it('use case creation for function should work', () => {
-      caseListPage.navigateTo();
-      caseListPage.navigateToCreate();
-
-      caseEditPage.fill({actor: `${id}Actor`, action: `${id}Action`, type: 'function', fn: `${id}Function`});
-      caseEditPage.submit();
-
+    it('template use case creation for function should work', () => {
+      caseListPage.create({actor: `${id}Actor`, action: `${id}Action`, type: 'function', fn: `${id}Function`}, caseEditPage);
       caseListPage.verifyInList(`${id}Actor ${id}Action ${id}Function`);
     })
   })

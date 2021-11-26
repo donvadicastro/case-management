@@ -8,3 +8,4 @@
     <input type="text" class="form-control" id="email" formControlName="email">
   </div>
 </form>
+<button *ngIf="!production" class="btn btn-danger" (click)="onRemoveCleanUp()">Clean-up database</button>

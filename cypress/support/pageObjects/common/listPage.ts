@@ -1,3 +1,5 @@
+import {AbstractEditPage} from "./editPage";
+
 export abstract class AbstractListPage {
   abstract get createNewLabel(): string;
   abstract navigateTo(): void;
@@ -10,5 +12,13 @@ export abstract class AbstractListPage {
 
   verifyInList(value: string) {
     cy.get('table').find('td').should('contain', value);
+  }
+
+  create(form: any, editPage: AbstractEditPage<any>) {
+    this.navigateTo();
+    this.navigateToCreate();
+
+    editPage.fill(form);
+    editPage.submit();
   }
 }
