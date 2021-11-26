@@ -12,7 +12,7 @@ export class ProjectListPage extends AbstractListPage {
   import(projectName: string) {
     cy.on('window:confirm', () => true);
 
-    this.importSelector.should('be.visible').select(projectName).wait(500);
+    this.importSelector.should('be.visible').select(projectName);
     this.importBtn.click();
   }
 }
