@@ -26,6 +26,6 @@ export abstract class AbstractListComponent<T extends BaseModel> {
   }
 
   public onDelete(id: string) {
-    this.collection.doc(id).delete();
+    window.confirm('Confirm delete') && this.collection.doc(id).delete();
   }
 }
