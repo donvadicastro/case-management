@@ -4,6 +4,7 @@ import {tap} from "rxjs/operators";
 import {ProjectModel} from "../management/projects/model";
 import {CaseModel} from "../management/cases/model";
 import {Component} from "@angular/core";
+import {QueryFn} from "@angular/fire/compat/firestore/interfaces";
 
 @Component({
   selector: 'app-dashboard',
@@ -19,13 +20,14 @@ export class DashboardComponent {
   constructor(private store: AngularFirestore) {
     this.loading = true;
 
-    this.projects$ = this.loadData('projects') as Observable<ProjectModel[]>;
     this.useCases$ = this.loadData('cases') as Observable<CaseModel[]>;
+    this.projects$ = this.loadData('projects',
+        query => query.where('isTemplate', '==', true)) as Observable<ProjectModel[]>;
 
     concat(this.projects$, this.useCases$).pipe(tap(() => this.loading = false)).subscribe();
   }
 
-  private loadData(collection: string):  Observable<any[]> {
-    return this.store.collection(collection).valueChanges({idField: 'id'});
+  private loadData(collection: string, query?: QueryFn):  Observable<any[]> {
+    return this.store.collection(collection, query).valueChanges({idField: 'id'});
   }
 }

@@ -1,24 +1,70 @@
 <button class="btn btn-primary" routerLink="./new">Add Project</button>
-<table class="table">
-  <thead>
-  <tr>
-    <td>Name</td>
-    <td>CreatedBy</td>
-    <td>CreatedOn</td>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let entity of entities | async">
-    <td><a routerLink="{{entity.id}}">{{ entity.name }}</a></td>
-    <td>{{ entity.createdBy?.name }}</td>
-    <td>{{ entity.createdOn | date }}</td>
-    <td>
-      <a class="btn btn-sm btn-secondary" data-title="{{entity.name}}" routerLink="view/{{entity.id}}">manage</a>&nbsp;
+<hr>
+<div class="accordion" id="accordionPanelsTemplates">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelTemplates-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelTemplates-collapseOne" aria-expanded="true" aria-controls="panelTemplates-collapseOne">
+        Project Templates
+      </button>
+    </h2>
+    <div id="panelTemplates-collapseOne" class="accordion-collapse collapse collapse" aria-labelledby="panelTemplates-headingOne">
+      <div class="accordion-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <td>Name</td>
+            <td>CreatedBy</td>
+            <td>CreatedOn</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let entity of entities | async | filterBy:'isTemplate': true">
+            <td><a routerLink="{{entity.id}}">{{ entity.name }}</a></td>
+            <td>{{ entity.createdBy?.name }}</td>
+            <td>{{ entity.createdOn | date }}</td>
+            <td>
+              <a class="btn btn-sm btn-secondary" data-title="{{entity.name}}" routerLink="view/{{entity.id}}">manage</a>&nbsp;
 
-      <button class="btn btn-sm btn-danger" (click)="onDelete(entity.id)">delete</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+              <button class="btn btn-sm btn-danger" (click)="onDelete(entity.id)">delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelProjects-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelProjects-collapseOne" aria-expanded="true" aria-controls="panelProjects-collapseOne">
+        Projects
+      </button>
+    </h2>
+    <div id="panelProjects-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelProjects-headingOne">
+      <div class="accordion-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <td>Name</td>
+            <td>CreatedBy</td>
+            <td>CreatedOn</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let entity of entities | async | filterBy:'isTemplate': false">
+            <td><a routerLink="{{entity.id}}">{{ entity.name }}</a></td>
+            <td>{{ entity.createdBy?.name }}</td>
+            <td>{{ entity.createdOn | date }}</td>
+            <td>
+              <a class="btn btn-sm btn-secondary" data-title="{{entity.name}}" routerLink="view/{{entity.id}}">manage</a>&nbsp;
+
+              <button class="btn btn-sm btn-danger" (click)="onDelete(entity.id)">delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div *ngIf="loading" class="d-flex justify-content-center"><div class="spinner-border" role="status"></div></div>

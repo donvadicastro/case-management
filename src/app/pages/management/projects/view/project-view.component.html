@@ -1,3 +1,13 @@
+<div class="float-end row g-3">
+  <div class="col-auto">
+    <select id="templates" class="form-select-sm" [(ngModel)]="selectedTemplate">
+      <option *ngFor="let n of templates" [ngValue]="n">{{ n.name }}</option>
+    </select>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-sm btn-info" name="import-from-template" (click)="onImport()">Import from template</button>
+  </div>
+</div>
 <h3>{{editForm.get('name')?.value}}</h3>
 <hr>
 <router-outlet></router-outlet>

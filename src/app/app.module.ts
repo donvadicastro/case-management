@@ -34,6 +34,8 @@ import {PropertyEditComponent} from "./pages/management/properties/edit/property
 import {EntityViewComponent} from "./pages/management/entities/view/entity-view.component";
 import { ArrayMapPipe } from './pipes/arrayMap/array-map.pipe';
 import { GroupByPipe } from './pipes/groupBy/group-by.pipe';
+import { SortByPipe } from './pipes/sortBy/sort-by.pipe';
+import { FilterByPipe } from './pipes/filterBy/filter-by.pipe';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { GroupByPipe } from './pipes/groupBy/group-by.pipe';
     PropertyEditComponent,
     EntityViewComponent,
     ArrayMapPipe,
-    GroupByPipe
+    GroupByPipe,
+    SortByPipe,
+    FilterByPipe
   ],
   imports: [
     BrowserModule,
