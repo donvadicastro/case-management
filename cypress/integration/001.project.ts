@@ -1,14 +1,31 @@
+import {ProjectEditPage} from "../support/pageObjects/projects/projectEditPage";
+import {ProjectListPage} from "../support/pageObjects/projects/projectListPage";
+import {ActorListPage} from "../support/pageObjects/actors/actorListPage";
+import {ActorEditPage} from "../support/pageObjects/actors/actorEditPage";
+import {ActionListPage} from "../support/pageObjects/actions/actionListPage";
+import {ActionEditPage} from "../support/pageObjects/actions/actionEditPage";
+import {EntityEditPage} from "../support/pageObjects/entities/entityEditPage";
+import {EntityListPage} from "../support/pageObjects/entities/entityListPage";
+import {QueryListPage} from "../support/pageObjects/queries/queryListPage";
+import {QueryEditPage} from "../support/pageObjects/queries/queryEditPage";
+import {FunctionListPage} from "../support/pageObjects/functions/functionListPage";
+import {FunctionEditPage} from "../support/pageObjects/functions/functionEditPage";
+import {CaseEditPage} from "../support/pageObjects/cases/caseEditPage";
+import {CaseListPage} from "../support/pageObjects/cases/caseListPage";
+
 describe('Project Test', () => {
   const id = new Date().getTime();
-  Cypress.env('uniqueId', id)
+  const projectEditPage = new ProjectEditPage();
+  const projectListPage = new ProjectListPage();
 
   it('project creation should work', () => {
-    cy.visit('/management/projects');
+    projectListPage.navigateTo();
 
     // create project
-    cy.get('.btn-primary').should('contain', 'Add Project').click();
-    cy.get('input[formcontrolname=name]').type(id + 'Project');
-    cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
+    projectListPage.navigateToCreate();
+
+    projectEditPage.fill({name: id + 'Project', isTemplate: false});
+    projectEditPage.submit();
 
     // check created and navigate
     cy.get(`a[title="${id}Project"]`).should('contain', 'manage').click();
@@ -25,84 +42,104 @@ describe('Project Test', () => {
   })
 
   describe('Resources Test', () => {
+    const actorListPage = new ActorListPage();
+    const actorEditPage = new ActorEditPage();
+
+    const actionListPage = new ActionListPage();
+    const actionEditPage = new ActionEditPage();
+
+    const entityListPage = new EntityListPage();
+    const entityEditPage = new EntityEditPage();
+
+    const queryListPage = new QueryListPage();
+    const queryEditPage = new QueryEditPage();
+
+    const functionListPage = new FunctionListPage();
+    const functionEditPage = new FunctionEditPage();
+
     it('actor creation should work', () => {
-      cy.get('a.nav-link').contains('ACTORS').click();
-      cy.get('.btn-primary').should('contain', 'Add Actor').click();
-      cy.get('input[formcontrolname=name]').type(id + 'Actor');
-      cy.get('input[formcontrolname=description]').type(id + 'Actor Description');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Actor`)
+      actorListPage.navigateTo();
+      actorListPage.navigateToCreate();
+
+      actorEditPage.fill({name: id + 'Actor', description: id + 'Actor Description'});
+      actorEditPage.submit();
+
+      actorListPage.verifyInList(`${id}Actor`);
     })
 
     it('action creation should work', () => {
-      cy.get('a.nav-link').contains('ACTIONS').click();
-      cy.get('.btn-primary').should('contain', 'Add Action').click();
-      cy.get('input[formcontrolname=name]').type(id + 'Action');
-      cy.get('input[formcontrolname=description]').type(id + 'Action Description');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Action`)
+      actionListPage.navigateTo();
+      actionListPage.navigateToCreate();
+
+      actionEditPage.fill({name: id + 'Action', description: id + 'Action Description'});
+      actionEditPage.submit();
+
+      actionListPage.verifyInList(`${id}Action`);
     })
 
     it('entity creation should work', () => {
-      cy.get('a.nav-link').contains('ENTITIES').click();
-      cy.get('.btn-primary').should('contain', 'Add Entity').click();
-      cy.get('input[formcontrolname=name]').type(id + 'Entity');
-      cy.get('input[formcontrolname=description]').type(id + 'Entity Description');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Entity`)
+      entityListPage.navigateTo();
+      entityListPage.navigateToCreate();
+
+      entityEditPage.fill({name: id + 'Entity', description: id + 'Entity Description'});
+      entityEditPage.submit();
+
+      entityListPage.verifyInList(`${id}Entity`);
     })
 
     it('query creation should work', () => {
-      cy.get('a.nav-link').contains('QUERIES').click();
-      cy.get('.btn-primary').should('contain', 'Add Query').click();
-      cy.get('input[formcontrolname=name]').type(id + 'Query');
-      cy.get('select[formcontrolname=from]').select(id + 'Entity');
-      cy.get('input[formcontrolname=where]').type(id + 'Query Where');
-      cy.get('input[formcontrolname=description]').type(id + 'Query Description');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Query`)
+      queryListPage.navigateTo();
+      queryListPage.navigateToCreate();
+
+      queryEditPage.fill({name: `${id}Query`, description: 'Query Description', from: `${id}Entity`, where: 'Query Where'});
+      queryEditPage.submit();
+
+      queryListPage.verifyInList(`${id}Query`);
     })
 
     it('function creation should work', () => {
-      cy.get('a.nav-link').contains('FUNCTIONS').click();
-      cy.get('.btn-primary').should('contain', 'Add Function').click();
-      cy.get('input[formcontrolname=name]').type(id + 'Function');
-      cy.get('input[formcontrolname=description]').type(id + 'Function Description');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Function`)
+      functionListPage.navigateTo();
+      functionListPage.navigateToCreate();
+
+      functionEditPage.fill({name: `${id}Function`, description: id + 'Function Description'});
+      functionEditPage.submit();
+
+      functionListPage.verifyInList(`${id}Function`);
     })
   })
 
   describe('UseCase Test', () => {
+    const caseEditPage = new CaseEditPage();
+    const caseListPage = new CaseListPage();
+
     it('use case creation for entity should work', () => {
-      cy.get('.nav-link').contains('CASES').click();
-      cy.get('.btn-primary').should('contain', 'Add Case').click();
-      cy.get('select[formcontrolname=actor]').select(id + 'Actor');
-      cy.get('select[formcontrolname=action]').select(id + 'Action');
-      cy.get('#typeEntity').check();
-      cy.get('select[formcontrolname=entity]').select(id + 'Entity');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Actor ${id}Action ${id}Entity`)
+      caseListPage.navigateTo();
+      caseListPage.navigateToCreate();
+
+      caseEditPage.fill({actor: `${id}Actor`, action: `${id}Action`, type: 'entity', entity: `${id}Entity`});
+      caseEditPage.submit();
+
+      caseListPage.verifyInList(`${id}Actor ${id}Action ${id}Entity`);
     })
 
     it('use case creation for query should work', () => {
-      cy.get('.btn-primary').should('contain', 'Add Case').click();
-      cy.get('select[formcontrolname=actor]').select(id + 'Actor');
-      cy.get('select[formcontrolname=action]').select(id + 'Action');
-      cy.get('#typeQuery').check();
-      cy.get('select[formcontrolname=query]').select(id + 'Query');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Actor ${id}Action ${id}Query`)
+      caseListPage.navigateTo();
+      caseListPage.navigateToCreate();
+
+      caseEditPage.fill({actor: `${id}Actor`, action: `${id}Action`, type: 'query', query: `${id}Query`});
+      caseEditPage.submit();
+
+      caseListPage.verifyInList(`${id}Actor ${id}Action ${id}Query`);
     })
 
     it('use case creation for function should work', () => {
-      cy.get('.btn-primary').should('contain', 'Add Case').click();
-      cy.get('select[formcontrolname=actor]').select(id + 'Actor');
-      cy.get('select[formcontrolname=action]').select(id + 'Action');
-      cy.get('#typeFunction').check();
-      cy.get('select[formcontrolname=function]').select(id + 'Function');
-      cy.get('.btn-primary').should('contain', 'Submit').should('not.be.disabled').click();
-      cy.get('table').find('td').should('contain', `${id}Actor ${id}Action ${id}Function`)
+      caseListPage.navigateTo();
+      caseListPage.navigateToCreate();
+
+      caseEditPage.fill({actor: `${id}Actor`, action: `${id}Action`, type: 'function', fn: `${id}Function`});
+      caseEditPage.submit();
+
+      caseListPage.verifyInList(`${id}Actor ${id}Action ${id}Function`);
     })
   })
 
