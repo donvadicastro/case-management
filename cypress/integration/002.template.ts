@@ -12,9 +12,12 @@ import {FunctionListPage} from "../support/pageObjects/functions/functionListPag
 import {FunctionEditPage} from "../support/pageObjects/functions/functionEditPage";
 import {CaseEditPage} from "../support/pageObjects/cases/caseEditPage";
 import {CaseListPage} from "../support/pageObjects/cases/caseListPage";
+import {ProfilePage} from "../support/pageObjects/profilePage";
 
 describe('Template Test', () => {
   const id = new Date().getTime();
+  const profilePage = new ProfilePage();
+
   const projectEditPage = new ProjectEditPage();
   const projectListPage = new ProjectListPage();
 
@@ -35,6 +38,11 @@ describe('Template Test', () => {
 
   const caseEditPage = new CaseEditPage();
   const caseListPage = new CaseListPage();
+
+  before(() => {
+    profilePage.navigateTo();
+    profilePage.cleanUp();
+  });
 
   it('project template creation should work', () => {
     projectListPage.create({name: `${id}TemplateProject`, isTemplate: true}, projectEditPage);

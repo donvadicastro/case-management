@@ -12,11 +12,18 @@ import {FunctionListPage} from "../support/pageObjects/functions/functionListPag
 import {FunctionEditPage} from "../support/pageObjects/functions/functionEditPage";
 import {CaseEditPage} from "../support/pageObjects/cases/caseEditPage";
 import {CaseListPage} from "../support/pageObjects/cases/caseListPage";
+import {ProfilePage} from "../support/pageObjects/profilePage";
 
 describe('Project Test', () => {
   const id = new Date().getTime();
   const projectEditPage = new ProjectEditPage();
   const projectListPage = new ProjectListPage();
+  const profilePage = new ProfilePage();
+
+  before(() => {
+    profilePage.navigateTo();
+    profilePage.cleanUp();
+  });
 
   it('project creation should work', () => {
     projectListPage.create({name: id + 'Project', isTemplate: false}, projectEditPage);
